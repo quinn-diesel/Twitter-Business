@@ -1,2 +1,10 @@
 <h1>Searches#create</h1>
 <p>Find me in app/views/searches/create.html.erb</p>
+
+
+<ul>
+  <% @tweets.each do |tweet| %>
+  <li><%= link_to tweet.text, "https://www.twitter.com/#{tweet.user.screen_name}" %></li>
+
+  <li><% client.update("I'm tweeting with a gem!") %></li>
+</ul>

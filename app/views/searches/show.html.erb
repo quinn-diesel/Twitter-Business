@@ -1,16 +1,18 @@
 
-<h1>My First Watson Search</h1>
+<h1>Twitter Senitment Analser</h1>
 
 
-<input type='text' id='clearbitsearch' placeholder='searh company name or email'><br>
-
-<button id='cbsearch'> SEARCH</button><br>
+<input type='text' id='twitterSearch' placeholder='Twitter Search'><br>
 
 
-<div id=clearbit>ClearBit results here</div><br>
+<button id='search'>SEARCH</button><br>
+
+<section id="tweets">
+  <% tweet.user.scree_name %> <% tweet.text %>
 
 
-<div id="watson search">Watson results here</div>
+</section>
 
+<div class='responded tweets'></div>
 
 <canvas id="myChart" width="400" height="400"> </canvas>
