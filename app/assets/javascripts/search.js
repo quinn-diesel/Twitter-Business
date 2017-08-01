@@ -2,43 +2,38 @@
 
 $(document).ready(function (){
 
-
   console.log('searches loaded');
 
 
- // API Twitter example https://api.twitter.com/1.1/search/tweets.json?q=%23superbowl&result_type=recent
+  // on the click of search button
+  $('#search').on('click', function (){
+        console.log('Search Clicked');
 
- // var twitterTest = function (){
- //   $.ajax({
- //     url:"https://api.twitter.com/1.1/search/tweets.json?q=%23freebandnames&since_id=24012619984051000&max_id=250126199840518145&result_type=mixed&count=4",
- //     method: "GET",
- //     dataType: "json"
- //   }).done(function (res){
- //     console.log(res);
- //   }).fail(function(xhr, status, error){
- //     console.log(xhr, status, error);
- //   })
- // }
+  // get the value of the term that has been entered into the search box
+    var searchWords = $('#twitterSearch').val();
+                        console.log(searchWords);
 
 
-var trumpTest = function (){
-  $.ajax({
-    url: "/seares/show",
-    type: "POST",
-    dataType: "json"
-  })
-}
 
-console.log(trumpTest);
+    var trumpTest = function (){
+      $.ajax({
+        url: "https://api.twitter.com/1.1/search/tweets.json?q=%40twitterapi",
+        type: "GET",
+        data: {
+          search: searchWords
+        },
+        dataType: "JSON"
+      })
+      .done(function (res){
+        console.log("Your twitter search term: " + res);
+        $('#appendResults').tweet()
+      })
+      .fail(function (xhr,status,error){
+        console.log(xhr, status, error);
+      })
+    }
 
-// on the click of search button
-$('#search').on('click', function (){
 
-console.log('Search Clicked');
-// get the value of the term that has been entered into the search box
-  var searchWords = $('#twitterSearch').val();
-
-console.log(searchWords);
 
 
 // fire the twitter search api //

@@ -7,11 +7,21 @@
 
 <button id='search'>SEARCH</button><br>
 
-<section id="tweets">
-  <% tweet.user.scree_name %> <% tweet.text %>
+<!-- <div class="twitterResults">
 
+  <ul id="appendResults">
+    <% @tweet.each do |t| %>
+    <li id='#{tweet.search}'>
+      <%= link_to(@tweet, results_path(tweet), remote: true, :class => "get-tweet" %>
+      <% end %>
+    </li>
+  </ul>
 
-</section>
+</div> -->
+
+<div id="newSeach">
+  <h4> <%= @search.username %> says <%= @search.text %> ></h4>
+<div>
 
 <div class='responded tweets'></div>
 

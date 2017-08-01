@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root 'searches#show'
 
+  get "/searches" => "searches#results"
+
   resources :users
 
   resources :searches
