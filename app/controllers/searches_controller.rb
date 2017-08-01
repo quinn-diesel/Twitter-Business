@@ -12,7 +12,7 @@ class SearchesController < ApplicationController
 
 
   def show
-    
+
     @search = Search.new()
 
     def twitter_config
@@ -29,8 +29,6 @@ class SearchesController < ApplicationController
         @username = tweet.user.screen_name
         @tweet = tweet.text
       end # client.search
-
-      raise hell
     #
     # def search_method
     #

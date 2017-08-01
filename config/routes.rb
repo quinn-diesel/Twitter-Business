@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'searches#show'
+  resources :tweets
 
   get "/searches" => "searches#results"
 
