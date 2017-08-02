@@ -3,9 +3,9 @@ $(document).ready(function (){
 
   console.log('searches loaded');
 
-  var positive = 0;
-  var neutral = 0;
-  var negative = 0;
+  var positive = 6;
+  var neutral = 3;
+  var negative = 1;
 
   var searchWords = $('#twitterSearch').val();
   console.log(searchWords);
@@ -41,6 +41,7 @@ $(document).ready(function (){
         // console.log(res.data[i]);
         // $("<p>"+result+"</p>").appendTo(".addTweets");
         }
+
         // loop to return sentiment word
       for (var j = 0; j < res.data.length; j++) {
         //define sentiment value
@@ -80,7 +81,6 @@ $(document).ready(function (){
 // SENTIMENT SCORE RESULTS
 // var myLineChart = new Chart(ctx, {
 //     type: 'line',
-//
 //     data: data,
 //     options: options
 // });
@@ -117,9 +117,14 @@ $(document).ready(function (){
                         beginAtZero:true
                     }
                 }]
-            }
-        }
-    });
+            }, // scales end
+            // animation: {
+            //   onProgress: function(animation) {
+            //     progress.value = animation.animationObject.currentStep / animation.animationObject.numSteps;
+            //   }
+            // } // animations end
+        } // end options
+    }); // bar chart end
 
 
 

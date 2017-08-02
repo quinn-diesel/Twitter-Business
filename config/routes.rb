@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root to: 'homepage#homepage'
+
   get    '/login' => 'session#new'
   post   '/login' => 'session#create'
   delete '/login' => 'session#destroy'
@@ -8,7 +10,6 @@ Rails.application.routes.draw do
   resources :tweets
 
   get "/searches" => "searches#results"
-
 
   resources :users
 

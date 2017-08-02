@@ -1,0 +1,22 @@
+
+<div>
+  <h1> TWITTER ANALYSER</h1>
+  <h2>HOMEPAGE</h2>
+  <h2>The twitttersphere boiled down</h2>
+    <div>
+      <h3>Don't have an account? Smash SIGN-UP!</h3>
+      <h4>OR</h4>
+      <h3>Don't really want an acount? </h3>
+        <% unless @current_user.present? %>
+          <button><%= link_to 'Login', login_path %></button> <button> <%= link_to 'Signup', new_user_path %> </button>
+        <% else %>
+          <p>
+            Welcome, <%= link_to @current_user.firstname, user_path(@current_user) %> |
+            <%= link_to 'Logout', login_path, method: :delete %>
+          </p>
+        <% end %> <br>
+        <div>
+        <%= link_to 'Go right to searching', tweets_path %>
+      </div>
+      </div>
+</div>

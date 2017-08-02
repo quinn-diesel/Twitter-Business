@@ -1,0 +1,21 @@
+
+<%= form_for @user, html: {multipart: true} do |f| %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+  <br>
+
+  <%= f.label :business %>
+  <%= f.text_field :business %>
+  <br>
+
+  <%= f.label :location %>
+  <%= f.text_field :location %>
+  <br>
+
+  <%= f.label :password %>
+  <%= f.text_field :password_digest %>
+
+  <%= f.submit 'Update Profile'%>
+
+<% end %>
