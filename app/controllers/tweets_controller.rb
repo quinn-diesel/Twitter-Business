@@ -19,7 +19,28 @@ class TweetsController < ApplicationController
     puts params
     results = Tweet.sync( params[:query], params[:limit].to_i )
     render json: { data: results }
+
   end
+
+  def save_searches
+    query = params[:query]
+    limit = param[:limit]
+    results = Tweet.sync( query, limit.to_i )
+
+    render json: { data: results }
+    search = Tweet.create({
+        body: tweet.text,
+        username: twee.user.scree_name
+    })
+
+    # if params[:searches].present?
+    #   results.each do |key, val|
+    #       :body =  val[:lat]
+    #       : = val[:lng]
+    #    end
+    #   end
+    
+  end  # save_searches
 
   def edit
   end

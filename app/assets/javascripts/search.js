@@ -3,7 +3,7 @@ $(document).ready(function (){
 
   console.log('javascript loaded');
 
-  if( $('.tweets.show').length){
+  if( $('.tweets.index').length){
 
     console.log('searches loaded');
 

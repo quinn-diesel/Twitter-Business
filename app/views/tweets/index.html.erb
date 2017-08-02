@@ -1,2 +1,33 @@
-<h1>Tweets#index</h1>
-<p><%= link_to "Search tweets", tweet_path %></p>
+<h1>Twitter Senitment Analser</h1>
+
+
+<input type='text' id='twitterSearch' placeholder='Twitter Search'><br>
+
+<input type="text" id="searchNum" placeholder="number">
+
+<form>
+  Select Type Search:
+  <select class="searchType" onClick="searchType()">
+    <option>Most Recent Tweets</option>
+    <option>Most Popular Tweets</option>
+    <option>Mixed Tweets</option>
+  </select>
+</form><br>
+
+<input type="text" placeholder="location"><br>
+
+<button id='search'>SEARCH</button><br>
+
+<button id="saveSearch">SAVE SEARCH</button>
+
+<div class="searchHistory">
+  <h2>Search history:</h2><br>
+</div>
+
+<canvas  id="scoreChart" width="400" height="400"></canvas>
+
+<div class='tweetFeed'>
+  <p class='addTweets'></p>
+</div>
+
+<canvas id="sentimentChart" width="400" height="400"> </canvas>
