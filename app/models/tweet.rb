@@ -1,6 +1,6 @@
 class Tweet < ApplicationRecord
 
-  def self.sync(query)
+  def self.sync(query, limit)
     client = Twitter::REST::Client.new do |config|
       config.consumer_key        = "1BBIstDS2uzQkdcAC4gYosdKk"
       config.consumer_secret     = "H2Js9WXs4YAQQ5pHzp4PzvkTDdlcg5vYUEAAOJKr9QtjoeTtuj"
@@ -14,17 +14,25 @@ class Tweet < ApplicationRecord
       #   @tweet = tweet.text
       # end # client.search
 
-    client.search(query).each do |tweet|
-      create(body: tweet.text)
+    results = []
+    client.search(query, lang: 'en').take(limit).each do |tweet|
+      # newTweets = create(body: tweet.text, score: $analyser.score(tweet.text), sentiment: $analyser.sentiment(tweet.text))
+      results.push({
+        body: tweet.text,
+        score: $analyser.score(tweet.text),
+        sentiment: $analyser.sentiment(tweet.text)
+      })
     end
+
+    results
   end
 
-  before_save :set_sentiment, if: :body_changed?
-
-  def set_sentiment
-    self.sentiment = $analyser.sentiment(body)
-    self.score = $analyser.score(body)
-  end
+  # before_save :set_sentiment, if: :body_changed?
+  #
+  # def set_sentiment
+  #   self.sentiment = $analyser.sentiment(body)
+  #   self.score = $analyser.score(body)
+  # end
 
 
 end

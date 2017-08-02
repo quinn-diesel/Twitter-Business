@@ -1,2 +1,29 @@
-<h1>Tweets#show</h1>
-<p>Find me in app/views/tweets/show.html.erb</p>
+<% if false %>
+<script type="text/javascript">
+
+  var tweetSentiment = <%= raw @tweet.body.sentiment.to_json %>;
+
+</script>
+<% end %>
+
+
+<h1>Twitter Senitment Analser</h1>
+
+
+<input type='text' id='twitterSearch' placeholder='Twitter Search'><br>
+
+<input type="text" id="searchNum" placeholder="number">
+
+<button id='search'>SEARCH</button><br>
+
+<div class='tweetFeed'>
+  <ul class='addTweets'></ul>
+</div>
+
+<canvas id="sentimentChart" width="400" height="400"> </canvas>
+
+
+<canvas  id="scoreChart" width="400" height="400"></canvas>
+
+
+<canvas id="myChart" width="400" height="400"> </canvas>
