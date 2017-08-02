@@ -1,176 +1,190 @@
 
 $(document).ready(function (){
 
-  console.log('searches loaded');
+  console.log('javascript loaded');
 
-  var positive = 6;
-  var neutral = 3;
-  var negative = 1;
+  if( $('.tweets.show').length){
 
-  var searchWords = $('#twitterSearch').val();
-  console.log(searchWords);
-  var searchNum = $('#searchNum').val();
-  console.log(searchNum);
+    console.log('searches loaded');
 
-  // on the click of search button
-  $('#search').on('click', function (){
-        console.log('Search Clicked');
+    var positive = 0;
+    var neutral = 0;
+    var negative = 0;
 
-  // clear previous results
-  $(".addTweets").empty();
+      // establish search term and number of most recent tweets
 
-  // establish search term and number of most recent tweets
+    // on the click of search button
+    $('#search').on('click', function (){
+          console.log('Search Clicked');
 
-  // set the ajax call to grab the data from the ruby back-end call
-    $.ajax({
-      url: "/tweets/search",
-      type: "GET",
-      data: {
-        query: searchWords,
-        limit: searchNum
-      },
-      dataType: "JSON"
-    })
-    .done(function (res){
-      // objects of tweets returned
-      console.log("Your twitter search term: ", res);
+    var searchWords = $('#twitterSearch').val();
+    console.log(searchWords);
+    var searchNum = $('#searchNum').val();
+    console.log(searchNum);
 
-      // loop for twitter feed  **to used later **
-      for (var i = 0; i < res.data.length; i++) {
-        var result = res.data[i].body;
-        // console.log(res.data[i]);
-        // $("<p>"+result+"</p>").appendTo(".addTweets");
-        }
-
-        // loop to return sentiment word
-      for (var j = 0; j < res.data.length; j++) {
-        //define sentiment value
-        var sentiment = res.data[j].sentiment;
-
-        // append to make twitter feed
-        // $("<li>"+sentiment+"</li>").appendTo('.addTweets');
-        // add to word counter
-        if(sentiment === "positive"){
-          positive += 1;
-        } else if (sentiment === "neutral"){
-            neutral += 1;
-          } else if (sentiment === "negative"){
-            negative += 1;
-          };
-        }
-
-        // display sentiment numbers
-        $("<li>" + "number of positive scores: " + positive + "</li>").appendTo('.addTweets');
-        $("<li>" + "number of neutral scores: " + neutral + "</li>").appendTo('.addTweets');
-        $("<li>" + "number of negative scores: " + negative + "</li>").appendTo('.addTweets');
-    }) // done end
-    .fail(function (xhr,status,error){
-      console.log(xhr, status, error);
-    }); // fail end
-
-    }); // end on click
-
-    $('#search').keypress(function(e){
-    if(e.keyCode == 13){//Enter key pressed
-        $('#search').click();//Trigger search button click event
-        console.log("enter smashed!");
-    }
-});
+    var ajaxData = {query:searchWords, limit:searchNum};
+    console.log(ajaxData);
+    // clear previous results
+    $(".addTweets").empty();
+    positive = 0;
+    neutral = 0;
+    negative = 0;
 
 
-// SENTIMENT SCORE RESULTS
-// var myLineChart = new Chart(ctx, {
-//     type: 'line',
-//     data: data,
-//     options: options
-// });
+    // set the ajax call to grab the data from the ruby back-end call
+      $.ajax({
+        url: "/tweets/search",
+        type: "GET",
+        data: ajaxData,
+        dataType: "JSON"
+      })
+      .done(function (res){
+        // objects of tweets returned
+        console.log("Your twitter search term: ", res);
 
+        // loop for twitter feed  **to used later **
+        for (var i = 0; i < res.data.length; i++) {
+          var result = res.data[i].body;
+          // console.log(res.data[i]);
+          // $("<p>"+result+"</p>").appendTo(".addTweets");
+          }
+          // loop to return sentiment word
+        for (var j = 0; j < res.data.length; j++) {
+          //define sentiment value
+          var sentiment = res.data[j].sentiment;
 
-// SENTIMENT RESULTS
-  var ctx = $("#sentimentChart");
+          // append to make twitter feed
+          // $("<li>"+sentiment+"</li>").appendTo('.addTweets');
 
-    var myChart = new Chart(ctx, {
+          // add to word counter
+          if(sentiment === "positive"){
+            positive += 1;
+          } else if (sentiment === "neutral"){
+              neutral += 1;
+            } else if (sentiment === "negative"){
+              negative += 1;
+            };
+          }
 
-        type: 'bar',
-        data: {
-            labels: ["Positive", "Neutral", "Negative"],
-            datasets: [{
+          // display sentiment numbers
+          $("<li>" + "number of positive scores: " + positive + "</li>").appendTo('.addTweets');
+          $("<li>" + "number of neutral scores: " + neutral + "</li>").appendTo('.addTweets');
+          $("<li>" + "number of negative scores: " + negative + "</li>").appendTo('.addTweets');
+
+          // SENTIMENT RESULTS
+          var ctx = $("#sentimentChart");
+
+          var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: ["Positive", "Neutral", "Negative"],
+              datasets: [{
                 label: ('sentiment graph for ' + searchWords),
                 data: [positive, neutral, negative],
                 backgroundColor: [
-                    'rgba(119, 221, 119, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(255, 105, 97, 0.2)'
+                  'rgba(119, 221, 119, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(255, 105, 97, 0.2)'
                 ],
                 borderColor: [
-                    'rgba(119, 221, 119, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(255, 105, 97, 1)',
+                  'rgba(119, 221, 119, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(255, 105, 97, 1)',
                 ],
                 borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
-            }, // scales end
-            // animation: {
-            //   onProgress: function(animation) {
-            //     progress.value = animation.animationObject.currentStep / animation.animationObject.numSteps;
-            //   }
-            // } // animations end
-        } // end options
-    }); // bar chart end
-
-
-
-
-
-
-
-// Basic Chart.js organiser //
-// This will be the foundation for later //
-  var ctx = $("#myChart");
-  var myChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-          datasets: [{
-              label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3],
-              backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                  'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                  'rgba(255,99,132,1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1
-          }]
-      },
-      options: {
-          scales: {
-              yAxes: [{
-                  ticks: {
-                      beginAtZero:true
-                  }
               }]
-          }
-      }
-  }); // end chart
+            },
+            options: {
+              scales: {
+                yAxes: [{
+                  ticks: {
+                    beginAtZero:true
+                  }
+                }]
+              }, // scales end
+              // animation: {
+              //   onProgress: function(animation) {
+              //     progress.value = animation.animationObject.currentStep / animation.animationObject.numSteps;
+              //   }
+              // } // animations end
+            } // end options
+          }); // bar chart end
 
+
+      }) // done end
+      .fail(function (xhr,status,error){
+
+        console.log(xhr, status, error);
+      }); // fail end
+
+
+  }); // end on click
+
+
+
+      $('#search').keypress(function(e){
+      if(e.keyCode == 13){//Enter key pressed
+          $('#search').click();//Trigger search button click event
+          console.log("enter smashed!");
+      }
+  });
+
+
+  // SENTIMENT SCORE RESULTS
+  // var myLineChart = new Chart(ctx, {
+  //     type: 'line',
+  //     data: data,
+  //     options: options
+  // });
+
+
+
+
+
+
+
+
+
+  // Basic Chart.js organiser //
+  // This will be the foundation for later //
+    // var ctx = $("#myChart");
+    // var myChart = new Chart(ctx, {
+    //     type: 'bar',
+    //     data: {
+    //         labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+    //         datasets: [{
+    //             label: '# of Votes',
+    //             data: [12, 19, 3, 5, 2, 3],
+    //             backgroundColor: [
+    //                 'rgba(255, 99, 132, 0.2)',
+    //                 'rgba(54, 162, 235, 0.2)',
+    //                 'rgba(255, 206, 86, 0.2)',
+    //                 'rgba(75, 192, 192, 0.2)',
+    //                 'rgba(153, 102, 255, 0.2)',
+    //                 'rgba(255, 159, 64, 0.2)'
+    //             ],
+    //             borderColor: [
+    //                 'rgba(255,99,132,1)',
+    //                 'rgba(54, 162, 235, 1)',
+    //                 'rgba(255, 206, 86, 1)',
+    //                 'rgba(75, 192, 192, 1)',
+    //                 'rgba(153, 102, 255, 1)',
+    //                 'rgba(255, 159, 64, 1)'
+    //             ],
+    //             borderWidth: 1
+    //         }]
+    //     },
+    //     options: {
+    //         scales: {
+    //             yAxes: [{
+    //                 ticks: {
+    //                     beginAtZero:true
+    //                 }
+    //             }]
+    //         }
+    //     }
+    // }); // end chart
+
+  } // if show. search
 
 }); // end doc ready

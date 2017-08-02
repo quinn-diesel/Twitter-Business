@@ -3,6 +3,7 @@ class CreateTweets < ActiveRecord::Migration[5.0]
     create_table :tweets do |t|
       t.text :body
       t.float :score
+      t.integer :user_id
       t.string :sentiment
         t.timestamps
     end

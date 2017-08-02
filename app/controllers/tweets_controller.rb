@@ -15,6 +15,7 @@ class TweetsController < ApplicationController
 
   # AJAX endpoint for "/tweets/search"
   def search
+
     puts params
     results = Tweet.sync( params[:query], params[:limit].to_i )
     render json: { data: results }

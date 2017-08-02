@@ -1,18 +1,19 @@
 class Tweet < ApplicationRecord
 
-  belongs_to :user
+  ### Relationships ####
+    belongs_to :user
 
-  has_secure_password
-    validates :email, presence: true, uniqueness: true, length: {minimum: 5}
-
+  ### TWITTER API ###
   def self.sync(query, limit)
     client = Twitter::REST::Client.new do |config|
-      config.consumer_key        = "1BBIstDS2uzQkdcAC4gYosdKk"
-      config.consumer_secret     = "H2Js9WXs4YAQQ5pHzp4PzvkTDdlcg5vYUEAAOJKr9QtjoeTtuj"
-      config.access_token        = "316853982-Rh8nMeqRWhiEGzZi843lelnIweO4o5z8eAuI14W7"
-      config.access_token_secret = "QxDcvQ8mHXb1CHb74vLiI5MQzB9lraazYu8s0ZoPj6MYK"
+      config.consumer_key        = "MaqpWY0TO2zBaZ8JHY4W79BKW"
+      config.consumer_secret     = "D0R1TpuIMJDjkUoCFY1ShUzDCuagA7iPBDJJtnBG9fsO8cfkaY"
+      config.access_token        = "316853982-tPm7s630qJqRoh5p4tLSRP4bX8c3irUlvp4FHvs3"
+      config.access_token_secret = "6jRtkivqcQddKyIwvy5Tbh8qdkNIyO0x4NqPBNj9hUSUT"
     end # client
 
+
+    ### AUTOMATIC SENTIMENT ANALYSIS ###
     results = []
     client.search(query, lang: 'en').take(limit).each do |tweet|
       # newTweets = create(body: tweet.text, score: $analyser.score(tweet.text), sentiment: $analyser.sentiment(tweet.text))
@@ -21,10 +22,12 @@ class Tweet < ApplicationRecord
         score: $analyser.score(tweet.text),
         sentiment: $analyser.sentiment(tweet.text)
       })
-    end
+      results
+    end #search
 
     results
-  end
+  end # self sync
+
 
 
 end

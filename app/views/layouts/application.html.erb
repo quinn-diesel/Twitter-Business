@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Business Senitment</title>
+    <title>SENTI</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -11,7 +11,24 @@
 
   </head>
 
-  <body>
+<body class="<%= controller_name %> <%= action_name %>">
+
+    <nav class= "nav_login">
+    <!-- MAIN NAV -->
+          <p>
+            <% unless @current_user.present? %>
+                <button> <%= link_to 'Login', login_path %></button> <button><%= link_to 'Signup', new_user_path %></button>
+              <% else %>
+            </p>
+            <a <%= link_to @current_user.name, user_path(@current_user)%> ></a>
+          </p>
+          <p>
+              <%= link_to 'Logout', login_path, method: :delete%>
+              <% end %>
+          </p>
+    </nav>
+    <h1>SENTI</h1>
+
 
     <%= yield %>
   </body>
