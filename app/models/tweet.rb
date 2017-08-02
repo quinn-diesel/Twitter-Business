@@ -19,10 +19,10 @@ class Tweet < ApplicationRecord
       # newTweets = create(body: tweet.text, score: $analyser.score(tweet.text), sentiment: $analyser.sentiment(tweet.text))
       results.push({
         body: tweet.text,
+        username: tweet.user.screen_name
         score: $analyser.score(tweet.text),
         sentiment: $analyser.sentiment(tweet.text)
       })
-      results
     end #search
 
     results
