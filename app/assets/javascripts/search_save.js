@@ -59,7 +59,17 @@ $(document).ready(function (){
       .done(function(res){
           console.log('database save working');
 
-        // append the search term and limti to termslimit
+        // append the search term and limit to termslimit
+        // turn into links
+        // make a table out of the results
+
+        //searchWords.apppendTo(div)
+        //searchNum.apppendTo(div)
+        //saerchType.appentTo(div)
+        
+        // $("<li>" + "number of positive scores: " + positive + "</li>").appendTo('.addTweets');
+        // $("<li>" + "number of neutral scores: " + neutral + "</li>").appendTo('.addTweets');
+        // $("<li>" + "number of negative scores: " + negative + "</li>").appendTo('.addTweets');
 
 
           // LOOP FOR SENTIMENT WORD
