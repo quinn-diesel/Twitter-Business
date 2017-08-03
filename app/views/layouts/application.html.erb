@@ -29,7 +29,7 @@
           <li class="ui button">
             <a <%= link_to @current_user.name, user_path(@current_user)%> ></a>
           </li>
-          <li>
+          <li class="ui button">
               <%= link_to 'Logout', login_path, method: :delete%>
               <% end %>
           </li>

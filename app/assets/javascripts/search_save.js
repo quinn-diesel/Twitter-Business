@@ -10,6 +10,8 @@ $(document).ready(function (){
           console.log('Search Clicked');
 
     var saveSearch = [];
+    var sentScoreArr = [];
+    var sentLabels = [];
 
     var searchWords = $('#twitterSearch').val();
     var searchNum = $('#searchNum').val();
@@ -44,10 +46,11 @@ $(document).ready(function (){
     neutral = 0;
     negative = 0;
 
-    // debugger;
-    //   score: ,
-    //   sentiment:
-    // };
+    // append the search term and limit to termslimit
+    // turn into links
+    // make a table out of the results
+    // $('<li`>' + searchWords + " : " + searchNum + ' of ' + searchType + '</li>' ).appendTo('.termsLimit');
+
 
     // AJAX CALL TO POST RESULTS
         $.ajax({
@@ -58,18 +61,6 @@ $(document).ready(function (){
       })
       .done(function(res){
           console.log('database save working');
-
-        // append the search term and limit to termslimit
-        // turn into links
-        // make a table out of the results
-
-        //searchWords.apppendTo(div)
-        //searchNum.apppendTo(div)
-        //saerchType.appentTo(div)
-        
-        // $("<li>" + "number of positive scores: " + positive + "</li>").appendTo('.addTweets');
-        // $("<li>" + "number of neutral scores: " + neutral + "</li>").appendTo('.addTweets');
-        // $("<li>" + "number of negative scores: " + negative + "</li>").appendTo('.addTweets');
 
 
           // LOOP FOR SENTIMENT WORD
@@ -131,7 +122,7 @@ $(document).ready(function (){
         for (var k = 0; k < ajaxResult.data.length; k++) {
           var sentScore = ajaxResult.data[k].score;
           sentScoreArr.push(sentScore);
-          console.log(sentScore);
+          // console.log(sentScore);
         }
 
         var lineGraph = $('#scoreChart');

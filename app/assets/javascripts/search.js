@@ -59,13 +59,12 @@ $(document).ready(function (){
         // objects of tweets returned
         console.log("Your twitter search term: ", res);
 
+        //COUNTER FUNCTION
 
-        debugger;
-        // res.counter.forEach(function(w) {
-        //   if( w[0].length > 3){
-        //      console.log(w);
-        //    }
-        // });
+        res.counter.forEach(function(w) {
+             console.log(w);
+              //  $("<li>"+ w+ "</li>").appendTo('.wordCounter');
+        });
 
 
         ajaxResult = res;
@@ -130,7 +129,7 @@ $(document).ready(function (){
                     beginAtZero:true
                   }
                 }]
-              }, // scales end
+              }// scales end
               // animation: {
               //   onProgress: function(animation) {
               //     progress.value = animation.animationObject.currentStep / animation.animationObject.numSteps;
@@ -144,7 +143,7 @@ $(document).ready(function (){
         for (var k = 0; k < res.data.length; k++) {
           var sentScore = res.data[k].score;
           sentScoreArr.push(sentScore);
-          console.log(sentScore);
+          // console.log(sentScore);
         }
 
         var lineGraph = $('#scoreChart');
@@ -164,17 +163,10 @@ $(document).ready(function (){
                       min: sentLabels
                     }
                   }] // options
-                } // scales
+                },
+                pointStyle:'circle',  // scales
               } // options
           }); // lineGraph end
-
-
-      // WORD COUNTER
-
-      // var counterString = sentScoreArr.join();
-      // var counter = counter.token_frequency(counterString);
-      //
-      // $("<li>" + counter + "</li>" ).appendTo(".wordCounter");
 
       }) // done end
       .fail(function (xhr,status,error){
