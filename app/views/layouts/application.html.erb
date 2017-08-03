@@ -13,19 +13,29 @@
 
 <body class="<%= controller_name %> <%= action_name %>">
 
-    <nav class= "nav_login">
-    <!-- MAIN NAV -->
-          <p>
+    <nav class="ui menu">
+      <div>
+        <ul>
+          <li class="ui button">
             <% unless @current_user.present? %>
-                <button> <%= link_to 'Login', login_path %></button> <button><%= link_to 'Signup', new_user_path %></button>
+                <%= link_to 'Login', login_path %>
+          </li>
+          <li class="ui button">
+             <%= link_to 'Signup', new_user_path %>
               <% else %>
-            </p>
+            </li>
+          <li class="ui button">
             <a <%= link_to @current_user.name, user_path(@current_user)%> ></a>
-          </p>
-          <p>
+          </li>
+          <li>
               <%= link_to 'Logout', login_path, method: :delete%>
               <% end %>
-          </p>
+          </li>
+          <li class="ui button" id='tweetmain'>
+              <%= link_to "Search Tweets", tweets_path %>
+          </li>
+        </ul>
+      </div>
     </nav>
     <h1>SENTI</h1>
 

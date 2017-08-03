@@ -7,11 +7,9 @@ Rails.application.routes.draw do
   delete '/login' => 'session#destroy'
 
   get '/tweets/search' => 'tweets#search'
-  put '/tweets/search' => 'tweets#save_searches'
+  post '/tweets/search/:user_id' => 'tweets#save_searches', as: 'update_user_searches'
 
   resources :tweets
-
-  get "/searches" => "searches#results"
 
   resources :users
 

@@ -1,30 +1,35 @@
-<h1>Twitter Senitment Analser</h1>
+<h1>Twitter Senitment Analyser</h1>
 
+<div class= "ui input">
+  <input type='text' id='twitterSearch' placeholder='Twitter Search'><br>
+</div><br>
 
-<input type='text' id='twitterSearch' placeholder='Twitter Search'><br>
-
-<input type="text" id="searchNum" placeholder="number">
+<div class= "ui input">
+  <input type="text" id="searchNum" placeholder="number">
+</div><br>
 
 <form>
-  Select Type Search:
-  <select class="searchType" onClick="searchType()">
-    <option>Most Recent Tweets</option>
-    <option>Most Popular Tweets</option>
-    <option>Mixed Tweets</option>
+  <select class="ui fluid search dropdown" class="searchType" id="searchType">
+    <option value="">Select Type Search:</option>
+    <option value="recent">Most Recent Tweets</option>
+    <option value="popular">Most Popular Tweets</option>
+    <option value="mixed">Mixed Tweets</option>
   </select>
 </form><br>
 
-<input type="text" placeholder="location"><br>
+<div class= "ui input">
+  <input type="text" placeholder="location">
+</div><br>
 
-<button id='search'>SEARCH</button><br>
+<button class="ui basic button" id='search'>SEARCH</button><br>
 
-<button id="saveSearch">SAVE SEARCH</button>
+<button class="ui basic button" id="saveSearch">SAVE SEARCH</button>
 
 <div class="searchHistory">
   <h2>Search history:</h2><br>
 </div>
 
-<canvas  id="scoreChart" width="400" height="400"></canvas>
+<canvas id="scoreChart" width="400" height="400"></canvas>
 
 <div class='tweetFeed'>
   <p class='addTweets'></p>

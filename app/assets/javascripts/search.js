@@ -1,4 +1,6 @@
 
+var ajaxResult;
+
 $(document).ready(function (){
 
   console.log('javascript loaded');
@@ -20,8 +22,8 @@ $(document).ready(function (){
       console.log(searchNum);
     var geography = $("#location").val();
       console.log(geography);
-    var searchType = $('.searchType').val();
-      console.log(searchType);
+    var type = $('#searchType').val();
+      console.log(type);
 
     // SENTIMENT WORD COUNTER
     var positive = 0;
@@ -37,7 +39,7 @@ $(document).ready(function (){
     }
 
 
-    var ajaxData = {query:searchWords, limit:searchNum};
+    var ajaxData = {query:searchWords, limit:searchNum, type:type};
     console.log(ajaxData);
     // clear previous sentiment word results
     $(".addTweets").empty();
@@ -56,6 +58,8 @@ $(document).ready(function (){
       .done(function (res){
         // objects of tweets returned
         console.log("Your twitter search term: ", res);
+
+        ajaxResult = res;
 
         // loop for twitter feed  **to used later **
         for (var i = 0; i < res.data.length; i++) {
@@ -163,8 +167,6 @@ $(document).ready(function (){
 
 
   }); // end on click
-
-
 
       $('#search').keypress(function(e){
       if(e.keyCode == 13){//Enter key pressed
