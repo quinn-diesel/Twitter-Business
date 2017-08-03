@@ -59,6 +59,15 @@ $(document).ready(function (){
         // objects of tweets returned
         console.log("Your twitter search term: ", res);
 
+
+        debugger;
+        // res.counter.forEach(function(w) {
+        //   if( w[0].length > 3){
+        //      console.log(w);
+        //    }
+        // });
+
+
         ajaxResult = res;
 
         // loop for twitter feed  **to used later **
@@ -164,7 +173,7 @@ $(document).ready(function (){
 
       // var counterString = sentScoreArr.join();
       // var counter = counter.token_frequency(counterString);
-
+      //
       // $("<li>" + counter + "</li>" ).appendTo(".wordCounter");
 
       }) // done end

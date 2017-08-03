@@ -20,6 +20,8 @@ class TweetsController < ApplicationController
     puts params
     results = Tweet.sync( params[:query], params[:limit].to_i, params[:type] )
 
+    tweets_text = ''
+
     # save seach function for tweet information
     results.each do |r|
       Tweet.create({
@@ -30,9 +32,23 @@ class TweetsController < ApplicationController
         sentiment: r[:sentiment].to_s,
         score: r[:score],
       })
+      tweets_text += ' ' + r[:body]
     end
 
-    render json: { data: results }
+    # tokeniser = WordsCounted::Tokeniser.new( tweets_text ).tokenise
+    counter = WordsCounted.count( tweets_text )
+
+    ignore_words = ['https']
+    word_counts = []
+
+    counter.token_frequency.each do |word|
+      if word[0].length > 4 && !ignore_words.include?( word[0] )
+        word_counts.push word
+      end
+    end
+    # binding.pry
+
+    render json: { data: results, counter: word_counts }
 
   end
 

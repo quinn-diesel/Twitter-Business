@@ -1,13 +1,19 @@
+<div class="ui form">
+  <%= form_for @user, html: {multipart: true} do |f| %>
 
-<%= form_for @user, html: {multipart: true} do |f| %>
+<div class="two fields">
+  <div class="four wide field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <br>
+  </div>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <br>
-
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-  <br>
+  <div class="twelve wide field">
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+    <br>
+  </div>
+</div>
 
   <%= f.label :business %>
   <%= f.text_field :business %>
@@ -21,7 +27,10 @@
   <%= f.password_field :password_confirmation %>
   <br>
 
-
+<div class="ui blue button">
   <%= f.submit %>
+</div>
 
-<% end %>
+  <% end %>
+
+</div>

@@ -4,18 +4,27 @@
   <h2>HOMEPAGE</h2>
   <h2>The twitttersphere boiled down</h2>
     <div>
-      <h3>Don't have an account? Smash SIGN-UP!</h3>
+      <h3>Want to login?</h3>
+      <div class="ui primary basic button">
         <% unless @current_user.present? %>
-          <button><%= link_to 'Login', login_path %></button> <button> <%= link_to 'Signup', new_user_path %> </button>
-        <% else %>
-          <p>
-            Welcome, <%= link_to @current_user.name, user_path(@current_user) %> |
-            <%= link_to 'Logout', login_path, method: :delete %>
-          </p>
+        <%= link_to 'Login', login_path %>
+      </div>
+
+      <h3>Don't have an account? Smash SIGN-UP!</h3>
+        <div class="ui secondary basic button">
+          <%= link_to 'Signup', new_user_path %>
+          <% else %>
+        </div>
+
+      <div>
+        Welcome, <%= link_to @current_user.name, user_path(@current_user) %> |
+        <%= link_to 'Logout', login_path, method: :delete %>
         <% end %> <br>
+      </div>
+
       <h4>OR</h4>
       <h3>Don't really want an acount? </h3>
-        <div>
+        <div class="ui negative basic button" >
         <%= link_to 'Go right to searching', tweets_path %>
       </div>
       </div>

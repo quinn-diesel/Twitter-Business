@@ -14,8 +14,10 @@
 <body class="<%= controller_name %> <%= action_name %>">
 
     <nav class="ui menu">
-      <div>
         <ul>
+          <li class="ui black button">
+            <%= link_to 'SENTI', homepage_path %>
+          </li>
           <li class="ui button">
             <% unless @current_user.present? %>
                 <%= link_to 'Login', login_path %>
@@ -35,7 +37,6 @@
               <%= link_to "Search Tweets", tweets_path %>
           </li>
         </ul>
-      </div>
     </nav>
     <h1>SENTI</h1>
 

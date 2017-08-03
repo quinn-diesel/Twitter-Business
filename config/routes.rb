@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root to: 'homepage#homepage'
+  get '/homepage' => 'homepage#homepage'
 
   get    '/login' => 'session#new'
   post   '/login' => 'session#create'
