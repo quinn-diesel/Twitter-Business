@@ -12,7 +12,6 @@ class Tweet < ApplicationRecord
       config.access_token_secret = "6jRtkivqcQddKyIwvy5Tbh8qdkNIyO0x4NqPBNj9hUSUT"
     end # client
 
-
     ### AUTOMATIC SENTIMENT ANALYSIS ###
     results = []
     client.search(query, lang: 'en', :result_type => type).take(limit).each do |tweet|

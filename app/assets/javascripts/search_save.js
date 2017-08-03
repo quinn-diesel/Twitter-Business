@@ -16,6 +16,10 @@ $(document).ready(function (){
     var searchType = $('.searchType').val();
     var results = [];
 
+    var positive = 0;
+    var neutral = 0;
+    var negative = 0;
+
     // loop for score, body and sentiment
     for (var i = 0; i < ajaxResult.data.length; i++) {
       var body = ajaxResult.data[i].body;
@@ -34,53 +38,16 @@ $(document).ready(function (){
 
     saveSearch.push(searchObject);
 
+    // clear previous sentiment word results
+    $(".addTweets").empty();
+    positive = 0;
+    neutral = 0;
+    negative = 0;
+
     // debugger;
     //   score: ,
     //   sentiment:
     // };
-
-  //   // MICHELLE CODE
-  //   $("#saveDBButton").click(function(){
-  //   var elements = canvas.getObjects();
-  //   console.log(elements);
-  //   var elems = [];
-  //   for (var i = 80; i < elements.length; i++) {
-  //     var left = elements[i].get('left');
-  //     var top = elements[i].get('top');
-  //     var angle = elements[i].get('angle');
-  //     var scaleX = elements[i].get('scaleX');
-  //     var scaleY = elements[i].get('scaleY');
-  //     var flourish_id = elements[i].get('id');
-  //     console.log('scaleX', scaleX, 'scaleY', scaleY);
-  //     var elementInfo = {
-  //       left: left,
-  //       top: top,
-  //       angle: angle,
-  //       scaleX: scaleX,
-  //       scaleY: scaleY,
-  //       flourish_id: flourish_id
-  //     };
-  //     elems.push(elementInfo);
-  //   }
-  //   console.log(elems);
-  //   saveElementData(elems)
-  //   });
-  // var saveElementData = function(info){
-  //   console.log('IN SAVE ELEMENT DATA FUNCTION: element info:', info);
-  //   var data = {
-  //     name: $('#designName').val(),
-  //     elements: info
-  //   };
-  //   // debugger;
-  //   // if( design_id ){
-  //   //   // debugger;
-  //   //   data.design_id = design_id;
-  //   // }
-  //   if (designData.id !== null){
-  //     data.design_id = designData.id;
-  //   }
-
-
 
     // AJAX CALL TO POST RESULTS
         $.ajax({
@@ -90,6 +57,10 @@ $(document).ready(function (){
           dataType: "JSON"
       })
       .done(function(res){
+          console.log('database save working');
+
+        // append the search term and limti to termslimit
+
 
           // LOOP FOR SENTIMENT WORD
         for (var j = 0; j < ajaxResult.data.length; j++) {
@@ -147,8 +118,8 @@ $(document).ready(function (){
 
     // SENTIMENT SCORE RESULTS
 
-        for (var k = 0; k < res.data.length; k++) {
-          var sentScore = res.data[k].score;
+        for (var k = 0; k < ajaxResult.data.length; k++) {
+          var sentScore = ajaxResult.data[k].score;
           sentScoreArr.push(sentScore);
           console.log(sentScore);
         }

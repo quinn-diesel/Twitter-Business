@@ -159,6 +159,14 @@ $(document).ready(function (){
               } // options
           }); // lineGraph end
 
+
+      // WORD COUNTER
+
+      // var counterString = sentScoreArr.join();
+      // var counter = counter.token_frequency(counterString);
+
+      // $("<li>" + counter + "</li>" ).appendTo(".wordCounter");
+
       }) // done end
       .fail(function (xhr,status,error){
 

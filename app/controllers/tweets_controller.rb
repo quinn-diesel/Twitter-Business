@@ -16,31 +16,45 @@ class TweetsController < ApplicationController
   # AJAX endpoint for "/tweets/search"
   def search
 
+    # send the original search through the JSON
     puts params
     results = Tweet.sync( params[:query], params[:limit].to_i, params[:type] )
+
+    # save seach function for tweet information
+    results.each do |r|
+      Tweet.create({
+        limit: params[:limit].to_i,
+        tweet_type: params[:type],
+        query: params[:query],
+        body: r[:body],
+        sentiment: r[:sentiment].to_s,
+        score: r[:score],
+      })
+    end
+
     render json: { data: results }
 
   end
 
-  def save_searches
-    @search = Tweet.find params[:id]
-
-    body = params[:query]
-    limit = param[:limit]
-    results = Tweet.sync( query, limit.to_i )
-
-    render json: { data: results }
-    search = Tweet.create({
-        body: tweet.text,
-        username: twee.user.scree_name
-    })
-
-    # if params[:searches].present?
-    #   results.each do |t|
-    #    end
-    #   end
-
-  end  # save_searches
+  # def save_searches
+  #   @search = Tweet.find params[:id]
+  #
+  #   body = params[:query]
+  #   limit = param[:limit]
+  #   results = Tweet.sync( query, limit.to_i )
+  #
+  #   render json: { data: results }
+  #   search = Tweet.create({
+  #       body: tweet.text,
+  #       username: twee.user.scree_name
+  #   })
+  #
+  #   # if params[:searches].present?
+  #   #   results.each do |t|
+  #   #    end
+  #   #   end
+  #
+  # end  # save_searches
 
   def edit
   end

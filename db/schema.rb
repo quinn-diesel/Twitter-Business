@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20170803015128) do
     t.date     "date"
     t.string   "query"
     t.integer  "limit"
-    t.string   "type"
+    t.string   "tweet_type"
   end
 
   create_table "users", force: :cascade do |t|
