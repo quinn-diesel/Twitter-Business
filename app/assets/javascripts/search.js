@@ -9,8 +9,6 @@ $(document).ready(function (){
 
     console.log('searches loaded');
 
-
-
     // START SEACH FUNCTION
     $('#search').on('click', function (){
           console.log('Search Clicked');
@@ -39,8 +37,13 @@ $(document).ready(function (){
     }
 
 
-    var ajaxData = {query:searchWords, limit:searchNum, type:type};
+    var ajaxData = {
+      query:searchWords,
+      limit:searchNum,
+      type:type
+    };
     console.log(ajaxData);
+
     // clear previous sentiment word results
     $(".addTweets").empty();
     positive = 0;
@@ -110,9 +113,9 @@ $(document).ready(function (){
                 label: ('sentiment graph for ' + searchWords),
                 data: [positive, neutral, negative],
                 backgroundColor: [
-                  'rgba(119, 221, 119, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(255, 105, 97, 0.2)'
+                  'rgba(119, 221, 119, 0.8)',
+                  'rgba(255, 206, 86, 0.8)',
+                  'rgba(255, 105, 97, 0.8)'
                 ],
                 borderColor: [
                   'rgba(119, 221, 119, 1)',
@@ -129,7 +132,7 @@ $(document).ready(function (){
                     beginAtZero:true
                   }
                 }]
-              }// scales end
+              },// scales end
               // animation: {
               //   onProgress: function(animation) {
               //     progress.value = animation.animationObject.currentStep / animation.animationObject.numSteps;
@@ -143,8 +146,11 @@ $(document).ready(function (){
         for (var k = 0; k < res.data.length; k++) {
           var sentScore = res.data[k].score;
           sentScoreArr.push(sentScore);
+          sentLabels.push(sentScore);
           // console.log(sentScore);
         }
+
+        //
 
         var lineGraph = $('#scoreChart');
         var myLineChart = new Chart(lineGraph, {
@@ -152,7 +158,10 @@ $(document).ready(function (){
               data: {
                 datasets: [{
                   label: ('Line Graph for: ' + searchWords),
-                  data: sentScoreArr
+                  data: sentScoreArr,
+                  backgroundColor: [
+                    'rgba(63, 124, 172, 1)',
+                  ]
                 }],
                 labels: sentLabels
               },// data
@@ -167,6 +176,86 @@ $(document).ready(function (){
                 pointStyle:'circle',  // scales
               } // options
           }); // lineGraph end
+
+
+      // var bubbleData = {};
+
+      // debugger;
+
+      // Bubblechart graph
+      // for (var l = 0; l < res.counter.length; l++) {
+      //     var x = res.counter[l][1];
+      //     var y = res.counter[l][1];
+      //     var r = res.counter[l][1];
+      //     bubbleData.push('x: ' + x + "," + "y: " + y + ", " + "r: " + r);
+      // }
+
+
+    // Bubblechart graph
+      // var bubbleChart = $("#worChart");
+      // var myBubbleChart = new Chart(bubbleChart, {
+      //   type: 'bubble',
+      //   data: {
+      //     datasets: [{
+      //       label: ('Most frequent words for: ' + searchWords),
+      //       data: bubbleData
+      //     }],
+      //     options: {
+      //       scales: {
+      //         xAxes: [{
+      //           ticks: {
+      //             min: sentLabels
+      //           }
+      //         }]
+      //       } // end scales
+      //     } // end options
+      //   } // end data
+      // }); // end bubbleChart
+
+  //       let MyScale = Chart.Scale.extend({
+  //     /* extensions ... */
+  // });
+  //
+  //     Chart.scaleService.registerScaleType('xAxis', MyScale, scatterData);
+
+      //SCATTER Chart
+    //   var scatterData = {};
+    //   var xAxis = [];
+    //
+    //   for (var l = 0; l < res.counter.length; l++) {
+    //       var x = res.counter[l][0];
+    //       var y = res.counter[l][1];
+    //       // var r = res.counter[l][1];
+    //       xAxis.push(x)
+    //       scatterData.y = y;
+    //       // debugger;
+    //   }
+    //
+    //
+    //   var scatChart = $('scatterChart');
+    //   var scatterChart = new Chart(scatChart, {
+    //     type: 'line',
+    //     data: {
+    //         labels: xAxis,
+    //         datasets: [{
+    //             label: 'Scatter Dataset',
+    //             data: [ scatterData ],
+    //         }], // datasets
+    //       }, // data
+    //     options: {
+    //         scales: {
+    //             yAxes: [{
+    //               scaleLabel:{
+    //                 display: true,
+    //                 labelString: 'probability'
+    //               }// position: 'bottom'
+    //             }] //xAxes
+    //         } // scales
+    //     } // options
+    // }); //
+
+
+
 
       }) // done end
       .fail(function (xhr,status,error){

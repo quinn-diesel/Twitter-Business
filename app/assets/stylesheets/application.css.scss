@@ -19,8 +19,18 @@
 body {
   text-align: center;
   font-family: 'Exo 2', sans-serif;
+  background-color: rgba(134, 224, 167, 1);
+  color: rgba(255, 255, 255, 1);
+}
+
+the_nav {
+  background-color: rgba(61, 90, 128, 1);
 }
 
 .nav_login {
   text-align: right;
+}
+
+canvas {
+  background-color: rgba(246, 247, 248, 0.6);
 }

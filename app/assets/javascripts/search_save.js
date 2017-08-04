@@ -49,7 +49,7 @@ $(document).ready(function (){
     // append the search term and limit to termslimit
     // turn into links
     // make a table out of the results
-    // $('<li`>' + searchWords + " : " + searchNum + ' of ' + searchType + '</li>' ).appendTo('.termsLimit');
+    $('<li`>' + searchWords + " : " + searchNum + ' of ' + searchType + '</li>' ).appendTo('.termsLimit');
 
 
     // AJAX CALL TO POST RESULTS
@@ -94,9 +94,9 @@ $(document).ready(function (){
                 label: ('sentiment graph for ' + searchWords),
                 data: [positive, neutral, negative],
                 backgroundColor: [
-                  'rgba(119, 221, 119, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(255, 105, 97, 0.2)'
+                  'rgba(119, 221, 119, 0.8)',
+                  'rgba(255, 206, 86, 0.8)',
+                  'rgba(255, 105, 97, 0.8)'
                 ],
                 borderColor: [
                   'rgba(119, 221, 119, 1)',
@@ -122,6 +122,7 @@ $(document).ready(function (){
         for (var k = 0; k < ajaxResult.data.length; k++) {
           var sentScore = ajaxResult.data[k].score;
           sentScoreArr.push(sentScore);
+          sentLabels.push(sentScore);
           // console.log(sentScore);
         }
 
@@ -131,7 +132,10 @@ $(document).ready(function (){
               data: {
                 datasets: [{
                   label: ('Line Graph for: ' + searchWords),
-                  data: sentScoreArr
+                  data: sentScoreArr,
+                  backgroundColor: [
+                    'rgba(63, 124, 172, 1)',
+                  ]
                 }],
                 labels: sentLabels
               },// data

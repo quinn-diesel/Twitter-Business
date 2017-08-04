@@ -18,7 +18,7 @@ class TweetsController < ApplicationController
 
     # send the original search through the JSON
     puts params
-    results = Tweet.sync( params[:query], params[:limit].to_i, params[:type] )
+    results = Tweet.sync( params[:query], params[:limit].to_i, params[:type], params[:username] )
 
     tweets_text = ''
 
@@ -42,7 +42,7 @@ class TweetsController < ApplicationController
     word_counts = []
 
     counter.token_frequency.each do |word|
-      if word[0].length > 4 && !ignore_words.include?( word[0] )
+      if word[0].length > 4 && !ignore_words.include?( word[0] ) && word.count >= 2
         word_counts.push word
       end
     end

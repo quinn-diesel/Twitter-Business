@@ -4,7 +4,7 @@ class Tweet < ApplicationRecord
     belongs_to :user
 
   ### TWITTER API ###
-  def self.sync(query, limit, type)
+  def self.sync(query, limit, type, name)
     client = Twitter::REST::Client.new do |config|
       config.consumer_key        = "MaqpWY0TO2zBaZ8JHY4W79BKW"
       config.consumer_secret     = "D0R1TpuIMJDjkUoCFY1ShUzDCuagA7iPBDJJtnBG9fsO8cfkaY"
@@ -14,8 +14,7 @@ class Tweet < ApplicationRecord
 
     ### AUTOMATIC SENTIMENT ANALYSIS ###
     results = []
-    client.search(query, lang: 'en', :result_type => type).take(limit).each do |tweet|
-      # newTweets = create(body: tweet.text, score: $analyser.score(tweet.text), sentiment: $analyser.sentiment(tweet.text))
+    client.search(query, lang: 'en', :result_type => type, :name => name).take(limit).each do |tweet|
       results.push({
         body: tweet.text,
         # username: tweet.user.screen_name
