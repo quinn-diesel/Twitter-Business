@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
 
+  mount ActionCable.server => '/cable'
+
+  resources :chatrooms, param: :slug
+  resources :messages
+
   root to: 'homepage#homepage'
   get '/homepage' => 'homepage#homepage'
+
 
   get    '/login' => 'session#new'
   post   '/login' => 'session#create'

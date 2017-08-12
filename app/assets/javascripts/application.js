@@ -15,3 +15,6 @@
 //= require semantic-ui
 //= require_tree .
 //= require_clearbit
+
+// app/assets/javascripts/application.js
+//= require_tree ./channels
