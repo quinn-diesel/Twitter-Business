@@ -266,6 +266,8 @@ $(document).ready(function (){
 
   }); // end on click
 
+
+    // Register enter click to search // ** needs to be fixed
       $('#search').keypress(function(e){
       if(e.keyCode == 13){//Enter key pressed
           $('#search').click();//Trigger search button click event

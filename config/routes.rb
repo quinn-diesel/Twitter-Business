@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'd3/show'
+
   mount ActionCable.server => '/cable'
 
   resources :chatrooms, param: :slug
@@ -8,6 +10,7 @@ Rails.application.routes.draw do
   root to: 'homepage#homepage'
   get '/homepage' => 'homepage#homepage'
 
+  get '/charts' => 'd3#show'
 
   get    '/login' => 'session#new'
   post   '/login' => 'session#create'

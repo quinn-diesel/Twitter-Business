@@ -63,6 +63,8 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    d3-rails (4.10.0)
+      railties (>= 3.1)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
     equalizer (0.0.11)
@@ -220,6 +222,7 @@ DEPENDENCIES
   clearbit
   cloudinary
   coffee-rails (~> 4.2)
+  d3-rails (~> 4.1)
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
