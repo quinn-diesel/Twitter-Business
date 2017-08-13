@@ -222,7 +222,7 @@ DEPENDENCIES
   clearbit
   cloudinary
   coffee-rails (~> 4.2)
-  d3-rails (~> 4.1)
+  d3-rails
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
@@ -241,4 +241,4 @@ DEPENDENCIES
   words_counted
 
 BUNDLED WITH
-   1.15.1
+   1.15.3

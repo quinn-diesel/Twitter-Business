@@ -4,6 +4,8 @@ $(document).ready(function (){
 
       console.log('d3 show page loaded');
 
+
+      // Example
       var data = [30, 86, 168, 281, 303, 365];
 
       d3.select(".chart")
@@ -16,4 +18,5 @@ $(document).ready(function (){
 
 
   } // if length verify the js for the page
+
 }); // doc ready

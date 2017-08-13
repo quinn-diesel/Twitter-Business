@@ -3,7 +3,7 @@ var ajaxResult;
 
 $(document).ready(function (){
 
-  console.log('javascript loaded');
+  console.log('search js loaded');
 
   if( $('.tweets.index').length){
 
@@ -36,7 +36,6 @@ $(document).ready(function (){
       sentLabels.push(i);
     }
 
-
     var ajaxData = {
       query:searchWords,
       limit:searchNum,
@@ -59,18 +58,32 @@ $(document).ready(function (){
         dataType: "JSON"
       })
       .done(function (res){
+
+        // make ajax request res //
+        ajaxResult = res;
         // objects of tweets returned
         console.log("Your twitter search term: ", res);
 
         //COUNTER FUNCTION
 
+        //DISPLAY SEARCH WORDS//
         res.counter.forEach(function(w) {
              console.log(w);
-              //  $("<li>"+ w+ "</li>").appendTo('.wordCounter');
+               $("<li>"+ w+ "</li>").appendTo('.wordCounter');
         });
 
+        // D3 first bar graph //
 
-        ajaxResult = res;
+        var data = [30, 86, 168, 281, 303, 365];
+
+        d3.select(".d3chart1")
+          .selectAll("div")
+          .data(data)
+            .enter()
+            .append("div")
+            .style("width", function(d) { return d * 2 + "px"; })
+            .text(function(d) { return '$ ' + d; });
+
 
         // loop for twitter feed  **to used later **
         for (var i = 0; i < res.data.length; i++) {
@@ -178,85 +191,6 @@ $(document).ready(function (){
           }); // lineGraph end
 
 
-      // var bubbleData = {};
-
-      // debugger;
-
-      // Bubblechart graph
-      // for (var l = 0; l < res.counter.length; l++) {
-      //     var x = res.counter[l][1];
-      //     var y = res.counter[l][1];
-      //     var r = res.counter[l][1];
-      //     bubbleData.push('x: ' + x + "," + "y: " + y + ", " + "r: " + r);
-      // }
-
-
-    // Bubblechart graph
-      // var bubbleChart = $("#worChart");
-      // var myBubbleChart = new Chart(bubbleChart, {
-      //   type: 'bubble',
-      //   data: {
-      //     datasets: [{
-      //       label: ('Most frequent words for: ' + searchWords),
-      //       data: bubbleData
-      //     }],
-      //     options: {
-      //       scales: {
-      //         xAxes: [{
-      //           ticks: {
-      //             min: sentLabels
-      //           }
-      //         }]
-      //       } // end scales
-      //     } // end options
-      //   } // end data
-      // }); // end bubbleChart
-
-  //       let MyScale = Chart.Scale.extend({
-  //     /* extensions ... */
-  // });
-  //
-  //     Chart.scaleService.registerScaleType('xAxis', MyScale, scatterData);
-
-      //SCATTER Chart
-    //   var scatterData = {};
-    //   var xAxis = [];
-    //
-    //   for (var l = 0; l < res.counter.length; l++) {
-    //       var x = res.counter[l][0];
-    //       var y = res.counter[l][1];
-    //       // var r = res.counter[l][1];
-    //       xAxis.push(x)
-    //       scatterData.y = y;
-    //       // debugger;
-    //   }
-    //
-    //
-    //   var scatChart = $('scatterChart');
-    //   var scatterChart = new Chart(scatChart, {
-    //     type: 'line',
-    //     data: {
-    //         labels: xAxis,
-    //         datasets: [{
-    //             label: 'Scatter Dataset',
-    //             data: [ scatterData ],
-    //         }], // datasets
-    //       }, // data
-    //     options: {
-    //         scales: {
-    //             yAxes: [{
-    //               scaleLabel:{
-    //                 display: true,
-    //                 labelString: 'probability'
-    //               }// position: 'bottom'
-    //             }] //xAxes
-    //         } // scales
-    //     } // options
-    // }); //
-
-
-
-
       }) // done end
       .fail(function (xhr,status,error){
 
@@ -274,8 +208,6 @@ $(document).ready(function (){
           console.log("enter smashed!");
       }
   });
-
-
 
 
 

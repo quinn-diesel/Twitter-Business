@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
-  get 'd3/show'
-
   mount ActionCable.server => '/cable'
+
+  get 'd3/show' => 'd3#show'
+  get 'd3/index'
+  get 'd3/data', :defaults => { :format => 'json' }
+
 
   resources :chatrooms, param: :slug
   resources :messages
@@ -10,7 +13,6 @@ Rails.application.routes.draw do
   root to: 'homepage#homepage'
   get '/homepage' => 'homepage#homepage'
 
-  get '/charts' => 'd3#show'
 
   get    '/login' => 'session#new'
   post   '/login' => 'session#create'
@@ -25,5 +27,5 @@ Rails.application.routes.draw do
 
   resources :searches
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
 end

@@ -13,8 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require semantic-ui
+//= require d3
 //= require_tree .
 //= require_clearbit
+
 
 // app/assets/javascripts/application.js
 //= require_tree ./channels

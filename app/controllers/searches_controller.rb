@@ -10,7 +10,6 @@ class SearchesController < ApplicationController
   end
 
 
-
   def show
   end # end show
 
