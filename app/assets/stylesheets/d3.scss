@@ -2,12 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//
+// .chart div {
+//   font: 10px sans-serif;
+//   background-color: steelblue;
+//   text-align: right;
+//   padding: 3px;
+//   margin: 1px;
+//   color: white;
+// }
 
-.chart div {
+.svgchart rect {
+  fill: steelblue;
+}
+
+.svgchart text {
+  fill: white;
   font: 10px sans-serif;
-  background-color: steelblue;
-  text-align: right;
-  padding: 3px;
-  margin: 1px;
-  color: white;
+  text-anchor: end;
 }

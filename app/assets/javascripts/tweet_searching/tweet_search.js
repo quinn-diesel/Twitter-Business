@@ -69,26 +69,49 @@ $(document).ready(function (){
         //DISPLAY SEARCH WORDS//
         res.counter.forEach(function(w) {
              console.log(w);
-               $("<li>"+ w+ "</li>").appendTo('.wordCounter');
+              //  $("<p>" + w + "</p>").appendTo('.wordCounter');
         });
 
         // D3 first bar graph //
 
-        var data = [30, 86, 168, 281, 303, 365];
+        // debugger;
+        //
+        // var data = [30, 86, 168, 281, 303, 365];
+        //
+        // var width = 420,
+        //     barHeight = 20;
+        //
+        //
+        // var x = d3.scale.linear()
+        //     .domain([0, d3.max(data)])
+        //     .range([0, width]);
+        //
+        // var chart = d3.select(".svgchart")
+        //     .attr("width", width)
+        //     .attr("height", barHeight * data.length);
+        //
+        // var bar = chart.selectAll("g")
+        //     .data(data)
+        //     .enter().append("g")
+        //     .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
+        //
+        // bar.append("rect")
+        //     .attr("width", x)
+        //     .attr("height", barHeight - 1);
+        //
+        // bar.append("text")
+        //     .attr("x", function(d) { return x(d) - 3; })
+        //     .attr("y", barHeight / 2)
+        //     .attr("dy", ".35em")
+        //     .text(function(d) { return d; });
 
-        d3.select(".d3chart1")
-          .selectAll("div")
-          .data(data)
-            .enter()
-            .append("div")
-            .style("width", function(d) { return d * 2 + "px"; })
-            .text(function(d) { return '$ ' + d; });
 
+        ////////// CHART JS GRAPHS ///////////
 
         // loop for twitter feed  **to used later **
         for (var i = 0; i < res.data.length; i++) {
           var result = res.data[i].body;
-          // console.log(res.data[i]);
+          console.log(res.data[i]);
           // $("<p>"+result+"</p>").appendTo(".addTweets");
           }
           // append to make twitter feed
@@ -139,6 +162,7 @@ $(document).ready(function (){
               }]
             },
             options: {
+              maintainAspectRatio: false,
               scales: {
                 yAxes: [{
                   ticks: {
@@ -179,6 +203,7 @@ $(document).ready(function (){
                 labels: sentLabels
               },// data
               options: {
+                maintainAspectRatio: false,
                 scales: {
                   xAxes: [{
                     ticks: {

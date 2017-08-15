@@ -17,6 +17,12 @@ $(document).ready(function (){
           .text(function(d) { return '$ ' + d; });
 
 
+      var circle = d3.selectAll("circle");
+          circle.style("fill", "steelblue");
+          circle.attr("r", 30);
+          circle.attr("cx", function() { return Math.random() * 720; });
+
+
   } // if length verify the js for the page
 
 }); // doc ready
